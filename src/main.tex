@@ -1,0 +1,95 @@
+\documentclass[11pt,a4paper]{report}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+% ---- latex_handler theme support ------------------------------------------
+% For non-default themes latex_handler injects \def\lhtheme{dark} through
+% latexmk's -pretex option. Declare a light fallback and branch on the macro.
+\providecommand{\lhtheme}{light}
+\def\lhdarkvalue{dark}
+\definecolor{lhlightaccent}{HTML}{1F4E79}
+\definecolor{lhdarkaccent}{HTML}{E8A33D}
+\colorlet{lhaccent}{lhlightaccent}
+\def\lhthemevalue{Light}
+\ifx\lhtheme\lhdarkvalue
+  \colorlet{lhaccent}{lhdarkaccent}
+  \def\lhthemevalue{Dark}
+\fi
+\providecommand{\lhbar}{}
+\providecommand{\lhfootertext}{}
+\InputIfFileExists{lh-branding}{}{}
+% ---------------------------------------------------------------------------
+
+\title{An Example Thesis\\[0.4em]\large Built from \texttt{latex-templates}}
+\author{Your Name}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\lhbar
+
+\begin{abstract}
+This is the flagship thesis/report variation of the \texttt{latex-templates}
+template. It demonstrates document discovery by \texttt{latex\_handler}, the
+light/dark theme mechanism, a project-local asset, and template-shared
+branding. Replace the placeholder text with your own work.
+\end{abstract}
+
+\tableofcontents
+\clearpage
+
+\chapter{Introduction}
+This document is compiled from \texttt{src/main.tex}, which matches the default
+discovery pattern \texttt{main.tex}. The other variations in this template use
+the \texttt{*\_main.tex} pattern.
+
+\input{demo-note}
+
+\chapter{Background}
+Research templates benefit from a consistent layout. This template ships its
+own \texttt{latex\_handler.toml} so every generated project starts with the
+same directory structure, discovery rules, engine, and enabled themes.
+
+\chapter{Method}
+The method can be described with ordinary LaTeX. Inline mathematics such as
+$E = mc^2$ works without extra setup, and displayed mathematics is available
+through \texttt{amsmath}:
+\begin{equation}
+  \label{eq:example}
+  f(x) = \int_0^x t^2 \, \mathrm{d}t = \frac{x^3}{3}.
+\end{equation}
+
+\chapter{Results}
+Table~\ref{tab:example} shows a small result table. Reference
+Equation~\ref{eq:example} from elsewhere in the document with
+\texttt{\textbackslash ref}.
+
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{lrr}
+    \hline
+    Setting & Light & Dark \\
+    \hline
+    Accent & Blue & Orange \\
+    Output stem & \texttt{main} & \texttt{main-dark} \\
+    \hline
+  \end{tabular}
+  \caption{Example results.}
+  \label{tab:example}
+\end{table}
+
+\chapter{Conclusion}
+The active theme for this build is \lhthemevalue. Compile with
+\texttt{--theme all} to produce both \texttt{main.pdf} and
+\texttt{main-dark.pdf}.
+
+\lhbar
+\noindent\small\lhfootertext
+
+\end{document}

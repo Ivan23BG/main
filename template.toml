@@ -1,0 +1,7 @@
+name = "main"
+version = "1.0.0"
+description = "Feuille de thèse/rapport (report) — LaTeX français, thèmes light/dark, basé sur latex-templates."
+authors = ["Ivan23BG"]
+repository = "https://github.com/Ivan23BG/main.git"
+
+shared_assets = "shared"
